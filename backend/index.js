@@ -8,11 +8,12 @@ app.use(cors())
 app.use(express.json())
 
 app.get("/", (req, res) => {
-  res.send("Welcome to the Cashly Landing Page API 🚀");
+  res.send("Welcome to the Cashly landing page");
 });
 
 app.use("/api/v1" , mainRouter )
 
-app.listen(3000, () => {
-    console.log("listing in port 3000")
+const PORT = process.env.PORT
+app.listen(PORT, () => {
+    console.log(`listing in port ${PORT}`)
 })

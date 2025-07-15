@@ -25,7 +25,7 @@ const LandingPage = () => {
         </h1>
         <div className="flex space-x-6">
           <Button
-            label="Sign Up"
+            label="Sign\u00A0Up"
             onClick={() => navigate("/signup")}
             className="text-lg px-8 py-3"
           />

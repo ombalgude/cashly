@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../components/Button";
 import upiImage from "../assets/upi-image.png";
+import BACKEND_URL from "../../config";
 
 const LandingPage = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -10,7 +11,7 @@ const LandingPage = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/")
+      .get(`${BACKEND_URL}/`)
       .then((res) => console.log("Backend connected:", res.data))
       .catch((err) => console.error("Backend error:", err));
   }, []);

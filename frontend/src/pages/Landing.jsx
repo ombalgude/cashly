@@ -23,11 +23,11 @@ const LandingPage = () => {
         <h1 className="text-3xl font-extrabold tracking-wide text-blue-400">
           Cashly
         </h1>
-        <div className="flex space-x-6">
+        <div className="flex space-x-4">
           <Button
             label="Sign Up"
             onClick={() => navigate("/signup")}
-            className="text-lg px-8 py-3"
+            className="text-lg px-6 py-2 font-medium whitespace-nowrap"
           />
           <Button
             label={isLoggedIn ? "Logout" : "Login"}
@@ -39,7 +39,7 @@ const LandingPage = () => {
                 navigate("/signin");
               }
             }}
-            className="text-lg px-8 py-3"
+            className="text-lg px-6 py-2 font-medium"
           />
           <Button
             label="Dashboard"
@@ -51,7 +51,7 @@ const LandingPage = () => {
                 alert("Please sign in first to access the dashboard.");
               }
             }}
-            className="text-lg px-8 py-3"
+            className="text-lg px-6 py-2 font-medium"
           />
         </div>
       </nav>
@@ -64,7 +64,10 @@ const LandingPage = () => {
               The Future of UPI Payments
             </h2>
             <p className="text-lg text-gray-300 mb-10 leading-relaxed">
-              Cashly is a next-generation UPI payment platform built for simplicity, speed, and security. Whether you're sending or receiving money, Cashly ensures a seamless and reliable payment experience — powered by trust and modern tech.
+              Cashly is a next-generation UPI payment platform built for
+              simplicity, speed, and security. Whether you're sending or
+              receiving money, Cashly ensures a seamless and reliable payment
+              experience — powered by trust and modern tech.
             </p>
           </div>
 

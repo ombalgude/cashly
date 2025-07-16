@@ -22,7 +22,7 @@ export const Signup = () => {
         return;
       }
 
-      const response = await axios.post(`${ACKEND_URL}/api/v1/user/signup`, {
+      const response = await axios.post(`${BACKEND_URL}/api/v1/user/signup`, {
         username,
         firstname,
         lastname,

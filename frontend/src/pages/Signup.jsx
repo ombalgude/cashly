@@ -30,7 +30,7 @@ export const Signup = () => {
       });
 
       localStorage.setItem("token", response.data.token);
-      navigate("/dashboard");
+      navigate("/signin");
     } catch (err) {
       console.error("Signup failed:", err);
       alert(err?.response?.data?.message || "Signup failed. Try again.");

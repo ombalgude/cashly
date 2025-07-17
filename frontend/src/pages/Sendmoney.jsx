@@ -29,9 +29,10 @@ export const SendMoney = () => {
             Authorization: `Bearer ${token}`,
           },
         }
-      );
+      )
 
       alert("Transfer successful");
+      
       navigate("/dashboard");
     } catch (error) {
       alert(error?.response?.data?.message || "Transfer failed");

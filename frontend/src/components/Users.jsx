@@ -18,6 +18,7 @@ export const Users = () => {
         },
       })
       .then((response) => {
+        console.log("Fetched users:", response.data.user);//delete this later
         setUsers(response.data.user);
       })
       .catch((error) => {
@@ -52,14 +53,14 @@ function User({ user }) {
     <div className="flex justify-between items-center p-4 bg-gray-900 rounded-xl border border-gray-800 shadow-sm hover:border-blue-600 transition-all">
       <div className="flex items-center space-x-4">
         <div className="rounded-full h-12 w-12 bg-blue-600 text-white flex items-center justify-center font-bold text-lg">
-          {user.firstName[0]}
+          {user.firstName?.[0] || "?"}
         </div>
         <div className="text-white font-medium">
-          {user.firstName} {user.lastName}
+          {user.firstname} {user.lastName}
         </div>
       </div>
       <Button
-        onClick={() => navigate(`/send?id=${user._id}&name=${user.firstName}`)}
+        onClick={() => navigate(`/send?id=${user._id}&name=${user.firstname}`)}
         label="Send Money"
         className="text-sm px-4 py-2"
       />

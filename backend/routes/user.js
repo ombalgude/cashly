@@ -130,13 +130,13 @@ router.get("/bulk", authMiddleware, async (req, res) => {
     _id: { $ne: req.userId },
     $or: [
       {
-        firstName: {
+        firstname: {
           $regex: filter,
           $options: "i",
         },
       },
       {
-        lastName: {
+        lastname: {
           $regex: filter,
           $options: "i",
         },
@@ -147,8 +147,8 @@ router.get("/bulk", authMiddleware, async (req, res) => {
   res.json({
     user: users.map((user) => ({
       username: user.username,
-      firstName: user.firstName,
-      lastName: user.lastName,
+      firstname: user.firstname,
+      lastname: user.lastname,
       _id: user._id,
     })),
   });

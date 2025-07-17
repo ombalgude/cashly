@@ -9,10 +9,19 @@ export const Users = () => {
   const [filter, setFilter] = useState("");
 
   useEffect(() => {
+    const token = localStorage.getItem("token");
+
     axios
-      .get(`${BACKEND_URL}/api/v1/user/bulk?filter=${filter}`)
+      .get(`${BACKEND_URL}/api/v1/user/bulk?filter=${filter}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then((response) => {
         setUsers(response.data.user);
+      })
+      .catch((error) => {
+        console.error("Error fetching users:", error);
       });
   }, [filter]);
 
@@ -50,9 +59,7 @@ function User({ user }) {
         </div>
       </div>
       <Button
-        onClick={() =>
-          navigate(`/send?id=${user._id}&name=${user.firstName}`)
-        }
+        onClick={() => navigate(`/send?id=${user._id}&name=${user.firstName}`)}
         label="Send Money"
         className="text-sm px-4 py-2"
       />

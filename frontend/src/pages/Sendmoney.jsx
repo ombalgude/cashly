@@ -8,8 +8,9 @@ export const SendMoney = () => {
   const [searchParams] = useSearchParams();
   const id = searchParams.get("id");
   const name = searchParams.get("name");
-  const [amount, setAmount] = useState(0);
+  const [amount, setAmount] = useState<number | string>("");
   const [balance, setBalance] = useState<number | null>(null);
+  const [loading, setLoading] = useState(false);
 
   const fetchBalance = async () => {
     try {
@@ -21,6 +22,7 @@ export const SendMoney = () => {
       setBalance(res.data.balance);
     } catch (err) {
       console.error("Failed to fetch balance", err);
+      toast.error("Failed to load balance.");
     }
   };
 
@@ -29,12 +31,20 @@ export const SendMoney = () => {
   }, []);
 
   const handleTransfer = async () => {
+    const amt = Number(amount);
+
+    if (!amt || amt <= 0) {
+      toast.error("Please enter a valid amount.");
+      return;
+    }
+
+    setLoading(true);
     try {
-      const res = await axios.post(
+      await axios.post(
         `${BACKEND_URL}/api/v1/account/transfer`,
         {
           to: id,
-          amount,
+          amount: amt,
         },
         {
           headers: {
@@ -43,12 +53,14 @@ export const SendMoney = () => {
         }
       );
 
-      toast.success(`₹${amount} transferred successfully to ${name}`);
-      setAmount(0);
-      fetchBalance(); // Refresh balance
+      toast.success(`₹${amt} transferred successfully to ${name}`);
+      setAmount("");
+      fetchBalance(); // Refresh balance after transfer
     } catch (err) {
       toast.error("Transfer failed. Please try again.");
       console.error("Transfer error", err);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -84,10 +96,12 @@ export const SendMoney = () => {
                 Amount (in Rs)
               </label>
               <input
+                value={amount}
                 onChange={(e) => {
-                  setAmount(parseInt(e.target.value));
+                  setAmount(e.target.value);
                 }}
                 type="number"
+                min="1"
                 className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
                 id="amount"
                 placeholder="Enter amount"
@@ -96,9 +110,14 @@ export const SendMoney = () => {
 
             <button
               onClick={handleTransfer}
-              className="justify-center rounded-md text-sm font-medium ring-offset-background transition-colors h-10 px-4 py-2 w-full bg-green-500 text-white hover:bg-green-600"
+              disabled={loading}
+              className={`justify-center rounded-md text-sm font-medium ring-offset-background transition-colors h-10 px-4 py-2 w-full ${
+                loading
+                  ? "bg-gray-400 cursor-not-allowed"
+                  : "bg-green-500 hover:bg-green-600 text-white"
+              }`}
             >
-              Initiate Transfer
+              {loading ? "Transferring..." : "Initiate Transfer"}
             </button>
           </div>
         </div>

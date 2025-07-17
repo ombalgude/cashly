@@ -1,11 +1,10 @@
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import { Button } from "../components/Button";
 import { InputBox } from "../components/Inputbox";
 import { Heading } from "../components/Heading";
 import { SubHeading } from "../components/Subheading";
-import { useNavigate } from "react-router-dom";
 import BACKEND_URL from "../../config";
 
 export const SendMoney = () => {
@@ -23,7 +22,7 @@ export const SendMoney = () => {
         `${BACKEND_URL}/api/v1/account/transfer`,
         {
           to: id,
-          amount: Number(amount), // Make sure to convert amount to a number
+          amount: Number(amount),
         },
         {
           headers: {
@@ -40,22 +39,32 @@ export const SendMoney = () => {
   };
 
   return (
-    <div className="bg-gray-800 h-screen flex justify-center items-center">
-      <div className="bg-white rounded-lg w-96 text-center p-8 shadow-md">
-        <Heading label={"Send Money"} />
-        <div className="flex items-center space-x-4 pt-8">
-          <div className="rounded-full bg-green-500 w-12 h-12 flex items-center justify-center text-white text-xl">
-            {name[0].toUpperCase()}
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 to-slate-700 flex items-center justify-center px-4">
+      <div className="bg-white rounded-2xl shadow-lg w-full max-w-md p-8 space-y-6">
+        <Heading label="Send Money" />
+
+        <div className="flex items-center gap-4 pt-4">
+          <div className="w-14 h-14 rounded-full bg-green-600 text-white flex items-center justify-center text-2xl font-semibold">
+            {name?.[0]?.toUpperCase()}
           </div>
-          <SubHeading label={name} />
+          <div>
+            <SubHeading label={name} />
+            <p className="text-sm text-gray-500">Recipient</p>
+          </div>
         </div>
-        <InputBox
-          label={"Amount (in Rs)"}
-          placeholder={"Enter amount"}
-          type="number"
-          onChange={(e) => setAmount(e.target.value)}
-        />
-        <Button label={"Send"} onClick={handleSend} />
+
+        <div className="pt-4">
+          <InputBox
+            label="Amount (in ₹)"
+            placeholder="Enter amount"
+            type="number"
+            onChange={(e) => setAmount(e.target.value)}
+          />
+        </div>
+
+        <div className="pt-4">
+          <Button label="Send" onClick={handleSend} />
+        </div>
       </div>
     </div>
   );

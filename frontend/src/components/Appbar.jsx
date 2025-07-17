@@ -4,15 +4,10 @@ export const Appbar = () => {
   const [initial, setInitial] = useState("U");
 
   useEffect(() => {
-    const userData = localStorage.getItem("user");
-    if (userData) {
-      try {
-        const user = JSON.parse(userData);
-        const firstLetter = user.firstname?.[0]?.toUpperCase() || "U";
-        setInitial(firstLetter);
-      } catch (err) {
-        console.error("Error parsing user data:", err);
-      }
+    const firstname = localStorage.getItem("firstname");
+    if (firstname) {
+      const firstLetter = firstname.charAt(0).toUpperCase();
+      setInitial(firstLetter);
     }
   }, []);
 

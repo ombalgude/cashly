@@ -26,7 +26,6 @@ export const Signin = () => {
       });
 
       localStorage.setItem("token", response.data.token);
-      localStorage.setItem("user", JSON.stringify(user));
       navigate("/dashboard");
     } catch (err) {
       console.error("Signin failed:", err);

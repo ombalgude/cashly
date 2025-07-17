@@ -30,6 +30,7 @@ export const Signup = () => {
       });
 
       localStorage.setItem("token", response.data.token);
+      localStorage.setItem("firstname", firstname);
       navigate("/signin");
     } catch (err) {
       console.error("Signup failed:", err);
@@ -45,16 +46,36 @@ export const Signup = () => {
           <SubHeading label="Join Cashly and move money smarter." />
         </div>
         <div className="space-y-4">
-          <InputBox onChange={(e) => setFirstName(e.target.value)} placeholder="John" label="First Name" />
-          <InputBox onChange={(e) => setLastName(e.target.value)} placeholder="Doe" label="Last Name" />
-          <InputBox onChange={(e) => setUsername(e.target.value)} placeholder="johndoe@gmail.com" label="Email" />
-          <InputBox onChange={(e) => setPassword(e.target.value)} placeholder="••••••••" label="Password" />
+          <InputBox
+            onChange={(e) => setFirstName(e.target.value)}
+            placeholder="John"
+            label="First Name"
+          />
+          <InputBox
+            onChange={(e) => setLastName(e.target.value)}
+            placeholder="Doe"
+            label="Last Name"
+          />
+          <InputBox
+            onChange={(e) => setUsername(e.target.value)}
+            placeholder="johndoe@gmail.com"
+            label="Email"
+          />
+          <InputBox
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="••••••••"
+            label="Password"
+          />
         </div>
         <div className="pt-6">
           <Button onClick={handleSignup} label="Sign Up" />
         </div>
         <div className="pt-4">
-          <BottomWarning label="Already have an account?" buttonText="Sign in" to="/signin" />
+          <BottomWarning
+            label="Already have an account?"
+            buttonText="Sign in"
+            to="/signin"
+          />
         </div>
       </div>
     </div>

@@ -53,16 +53,16 @@ function User({ user }) {
     <div className="flex justify-between items-center p-4 bg-gray-900 rounded-xl border border-gray-800 shadow-sm hover:border-blue-600 transition-all">
       <div className="flex items-center space-x-4">
         <div className="rounded-full h-10 w-10 bg-blue-600 text-white flex items-center justify-center font-semibold text-md">
-          {user.firstName?.[0] || "?"}
+          {user.firstname?.[0] || "?"}
         </div>
         <div className="text-white font-medium">
-          {user.firstName} {user.lastName}
+          {user.firstname} {user.lastname}
         </div>
       </div>
       <div className="ml-auto">
         <Button
           onClick={() =>
-            navigate(`/send?id=${user._id}&name=${user.firstName}`)
+            navigate(`/send?id=${user._id}&name=${user.firstname}`)
           }
           label="Send"
           className="text-xs px-3 py-1 rounded-md bg-blue-600 hover:bg-blue-700 transition-all"

@@ -29,10 +29,9 @@ export const SendMoney = () => {
             Authorization: `Bearer ${token}`,
           },
         }
-      )
+      );
 
       alert("Transfer successful");
-      
       navigate("/dashboard");
     } catch (error) {
       alert(error?.response?.data?.message || "Transfer failed");
@@ -40,21 +39,21 @@ export const SendMoney = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 to-slate-700 flex items-center justify-center px-4">
-      <div className="bg-white rounded-2xl shadow-lg w-full max-w-md p-8 space-y-6">
-        <Heading label="Send Money" />
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-800 flex items-center justify-center px-4">
+      <div className="bg-gray-900 border border-gray-700 rounded-2xl shadow-md w-full max-w-md p-8 space-y-6 text-white">
+        <h2 className="text-3xl font-bold text-blue-400 text-center">Send Money</h2>
 
-        <div className="flex items-center gap-4 pt-4">
-          <div className="w-14 h-14 rounded-full bg-green-600 text-white flex items-center justify-center text-2xl font-semibold">
-            {name?.[0]?.toUpperCase()}
+        <div className="flex items-center gap-4 pt-2">
+          <div className="w-14 h-14 rounded-full bg-green-600 text-white flex items-center justify-center text-xl font-semibold uppercase">
+            {name?.[0]}
           </div>
           <div>
-            <SubHeading label={name} />
-            <p className="text-sm text-gray-500">Recipient</p>
+            <div className="text-lg font-medium text-white">{name}</div>
+            <div className="text-sm text-gray-400">Recipient</div>
           </div>
         </div>
 
-        <div className="pt-4">
+        <div className="pt-2">
           <InputBox
             label="Amount (in ₹)"
             placeholder="Enter amount"
@@ -63,8 +62,12 @@ export const SendMoney = () => {
           />
         </div>
 
-        <div className="pt-4">
-          <Button label="Send" onClick={handleSend} />
+        <div className="pt-2">
+          <Button
+            label="Send"
+            onClick={handleSend}
+            className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-md transition"
+          />
         </div>
       </div>
     </div>

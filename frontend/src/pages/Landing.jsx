@@ -19,15 +19,15 @@ const LandingPage = () => {
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-blue-950 via-black to-gray-900 text-white font-sans">
       {/* Navbar */}
-      <nav className="flex justify-between items-center px-6 py-3 shadow-md bg-black bg-opacity-60 backdrop-blur-md">
+      <nav className="flex justify-between items-center px-6 py-4 shadow-md bg-black bg-opacity-60 backdrop-blur-md">
         <h1 className="text-2xl font-bold tracking-wide text-blue-400">
           Cashly
         </h1>
         <div className="flex space-x-2">
           <Button
-            label="Sign Up"
+            label={"Sign\u00A0Up"}
             onClick={() => navigate("/signup")}
-            className="text-sm px-4 py-1.5"
+            className="text-md px-8 py-3"
           />
           <Button
             label={isLoggedIn ? "Logout" : "Login"}
@@ -39,7 +39,7 @@ const LandingPage = () => {
                 navigate("/signin");
               }
             }}
-            className="text-sm px-4 py-1.5"
+            className="text-md px-8 py-3"
           />
           <Button
             label="Dashboard"
@@ -51,7 +51,7 @@ const LandingPage = () => {
                 alert("Please sign in first to access the dashboard.");
               }
             }}
-            className="text-sm px-4 py-1.5"
+            className="text-md px-8 py-3"
           />
         </div>
       </nav>

@@ -6,6 +6,7 @@ import upiImage from "../assets/upi-image.png";
 import BACKEND_URL from "../../config";
 
 const LandingPage = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
 
@@ -23,7 +24,7 @@ const LandingPage = () => {
         <h1 className="text-2xl font-bold tracking-wide text-blue-400">
           Cashly
         </h1>
-        <div className="flex space-x-2">
+        <div className="hidden md:flex space-x-2">
           <Button
             label={"Sign\u00A0Up"}
             onClick={() => navigate("/signup")}
@@ -54,28 +55,70 @@ const LandingPage = () => {
             className="text-md px-8 py-3"
           />
         </div>
+        <div className="md:hidden">
+          <button onClick={() => setIsMenuOpen(!isMenuOpen)}>
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+          </button>
+        </div>
       </nav>
+
+      {/* Mobile Menu */}
+      {isMenuOpen && (
+        <div className="md:hidden bg-black bg-opacity-80 backdrop-blur-md">
+          <div className="flex flex-col items-center space-y-4 py-4">
+            <Button
+              label={"Sign\u00A0Up"}
+              onClick={() => navigate("/signup")}
+              className="text-md px-8 py-3"
+            />
+            <Button
+              label={isLoggedIn ? "Logout" : "Login"}
+              onClick={() => {
+                if (isLoggedIn) {
+                  setIsLoggedIn(false);
+                  localStorage.removeItem("token");
+                } else {
+                  navigate("/signin");
+                }
+              }}
+              className="text-md px-8 py-3"
+            />
+            <Button
+              label="Dashboard"
+              onClick={() => {
+                const token = localStorage.getItem("token");
+                if (token) {
+                  navigate("/dashboard");
+                } else {
+                  alert("Please sign in first to access the dashboard.");
+                }
+              }}
+              className="text-md px-8 py-3"
+            />
+          </div>
+        </div>
+      )}
 
       {/* Hero Section */}
       <section className="flex-grow flex items-center justify-center px-6 md:px-24 py-16">
-        <div className="flex flex-col-reverse md:flex-row items-center justify-center gap-12 w-full">
+        <div className="flex flex-col-reverse md:flex-row items-center justify-center gap-8 md:gap-12 w-full">
           <div className="text-center md:text-left max-w-2xl">
-            <h2 className="text-4xl md:text-5xl font-extrabold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-sky-200">
+            <h2 className="text-3xl md:text-5xl font-extrabold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-sky-200">
               The Future of UPI Payments
             </h2>
             <p className="text-base md:text-lg text-gray-300 mb-8 leading-relaxed">
               Cashly is a next-generation UPI payment platform built for
-              simplicity, speed, and security. Whether you're sending or
+              simplicity, speed, and security. Whether you&apos;re sending or
               receiving money, Cashly ensures a seamless and reliable payment
               experience — powered by trust and modern tech.
             </p>
           </div>
 
-          <div className="w-full md:w-auto">
+          <div className="w-full md:w-auto flex justify-center">
             <img
               src={upiImage}
               alt="UPI Illustration"
-              className="w-64 md:w-80 drop-shadow-xl hover:scale-105 transition-transform duration-300 ease-in-out"
+              className="w-56 md:w-80 drop-shadow-xl hover:scale-105 transition-transform duration-300 ease-in-out"
             />
           </div>
         </div>

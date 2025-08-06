@@ -40,7 +40,7 @@ export const Signup = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-950 via-black to-gray-900 text-white">
-      <div className="bg-gray-900 bg-opacity-80 backdrop-blur-xl rounded-2xl shadow-2xl p-10 w-full max-w-md">
+      <div className="bg-gray-900 bg-opacity-80 backdrop-blur-xl rounded-2xl shadow-2xl p-8 md:p-10 w-11/12 md:w-full max-w-md">
         <div className="text-center mb-6">
           <Heading label="Create Your Account" />
           <SubHeading label="Join Cashly and move money smarter." />

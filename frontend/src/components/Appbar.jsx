@@ -16,7 +16,7 @@ export const Appbar = () => {
       <div className="text-2xl font-bold tracking-wide text-blue-400">Cashly</div>
 
       <div className="flex items-center space-x-4">
-        <span className="text-base font-medium text-gray-300">Hello</span>
+        <span className="hidden sm:inline text-base font-medium text-gray-300">Hello</span>
         <div className="h-10 w-10 rounded-full bg-blue-500 flex items-center justify-center text-white font-semibold text-lg shadow-md">
           {initial}
         </div>

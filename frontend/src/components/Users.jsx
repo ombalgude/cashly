@@ -3,6 +3,7 @@ import { Button } from "./Button";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import BACKEND_URL from "../../config";
+import PropTypes from 'prop-types';
 
 export const Users = () => {
   const [users, setUsers] = useState([]);
@@ -27,7 +28,7 @@ export const Users = () => {
   }, [filter]);
 
   return (
-    <div className="mt-8 px-4">
+    <div className="mt-8 px-2 sm:px-4">
       <h2 className="text-2xl font-semibold text-blue-400 mb-4">Users</h2>
       <div className="mb-4">
         <input
@@ -44,6 +45,11 @@ export const Users = () => {
       </div>
     </div>
   );
+};
+
+Users.propTypes = {
+  users: PropTypes.arrayOf(PropTypes.object).isRequired,
+  filter: PropTypes.string.isRequired,
 };
 
 function User({ user }) {
@@ -71,3 +77,11 @@ function User({ user }) {
     </div>
   );
 }
+
+User.propTypes = {
+  user: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    firstname: PropTypes.string.isRequired,
+    lastname: PropTypes.string.isRequired,
+  }).isRequired,
+};

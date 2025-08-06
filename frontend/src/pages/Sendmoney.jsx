@@ -3,8 +3,6 @@ import { useState } from "react";
 import axios from "axios";
 import { Button } from "../components/Button";
 import { InputBox } from "../components/Inputbox";
-import { Heading } from "../components/Heading";
-import { SubHeading } from "../components/Subheading";
 import BACKEND_URL from "../../config";
 
 export const SendMoney = () => {
@@ -39,7 +37,7 @@ export const SendMoney = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-800 flex items-center justify-center px-4">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-800 flex items-center justify-center px-2 sm:px-4">
       <div className="bg-gray-900 border border-gray-700 rounded-2xl shadow-md w-full max-w-md p-8 space-y-6 text-white">
         <h2 className="text-3xl font-bold text-blue-400 text-center">Send Money</h2>
 
